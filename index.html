@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Walton Bingo</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='css/waltonbingo.css' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <h1>Bill Walton Bingo</h1>
+
+    <div class="buttonContainer webOnly">
+      <button onclick="window.print();">Print Card</button>
+      <button onclick="RandomizeCard();">Randomize</button>
+    </div>
+
+    <div class="buttonContainer">
+      <h3 id="seedNumberPrint" class="printOnly"></h3>
+      <input id="seedNumber" class="webOnly" type="number" placeholder="Enter seed">
+      <button class="webOnly" onclick="LoadSeed();">Load Seed</button>
+    </div>
+
+    <div id="bingoCard">
+    </div>
+
+    <p id ="websiteLocation" class="printOnly">Play on a device at </p>
+
+    <script src="js/random.min.js"></script>
+    <script src="js/waltonbingo.js"></script>
+  </body>
+</html>
