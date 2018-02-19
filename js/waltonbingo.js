@@ -20,7 +20,7 @@ var waltonThings =
   "Makes animal noise",
   "Drug Reference",
   "Grateful Dead",
-  "Mentions his wife",
+  "Mentions his wife (Lori)",
   "Dave is a Coal Burner",
   "Throw it down, big man",
   "Complains about refs",
