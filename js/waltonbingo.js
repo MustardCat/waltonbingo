@@ -52,8 +52,8 @@ var waltonThings =
   "\"Another timeout?\"",
   "Asks Dave if he's been to a location",
   "\"Great Pass\" (bad shot)",
-  "\"Climb the ladder\""
-
+  "\"Climb the ladder\"",
+  "\"Why do you hate my grandchildren?\""
 ];
 
 var randomSeed;
