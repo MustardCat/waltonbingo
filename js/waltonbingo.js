@@ -15,17 +15,18 @@ var bingoLetters =
 var waltonThings =
 [
   "Conference of Champions",
-  "It's Dave, Right?",
+  "\"It's Dave, Right?\"",
   "Truck Stop Conference",
   "Makes animal noise",
   "Drug Reference",
   "Grateful Dead",
   "Mentions his wife (Lori)",
   "Dave is a Coal Burner",
-  "Throw it down, big man",
+  "\"Throw it down, big man\"",
   "Complains about refs",
   "Compliments refs",
   "Bill gives a present",
+  "Bill receives a present",
   "Creates Player Nickname",
   "Nature Fact",
   "\"Not a foul\"",
@@ -39,9 +40,20 @@ var waltonThings =
   "Calls player by nickname",
   "John Wooden",
   "Bill's mic is cut off while talking",
-  "___ is a travesty",
+  "\"___ is a travesty\"",
   "Random tangent to music topic",
   "Sings a song",
+  "Calls player by wrong name",
+  "Talks about player's parents",
+  "\"Please\"",
+  "Geographical Reference",
+  "Complains about ESPN",
+  "\"Midget chairs\"",
+  "\"Another timeout?\"",
+  "Asks Dave if he's been to a location",
+  "\"Great Pass\" (bad shot)",
+  "\"Climb the ladder\""
+
 ];
 
 var randomSeed;
