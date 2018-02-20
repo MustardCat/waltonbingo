@@ -9,6 +9,7 @@ It's easiest to contact me on reddit: https://www.reddit.com/u/mustardcat
 ## Contributors
 Below is a list of people who helped create the list of Walton-isms:
 
+* /u/fidens16
 * /u/MetaKoopa99
 * /u/nojeanshere
 * Anonymous redditors
