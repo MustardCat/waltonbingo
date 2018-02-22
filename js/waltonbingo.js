@@ -55,7 +55,8 @@ var waltonThings =
   "\"Climb the ladder\"",
   "\"Why do you hate my grandchildren?\"",
   "\"I love my bike\"",
-  "Plenty of time for a comeback"
+  "Plenty of time for a comeback",
+  "___ is much better than media perception"
 ];
 
 var randomSeed;
