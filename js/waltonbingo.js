@@ -21,6 +21,7 @@ var waltonThings =
   "Drug Reference",
   "Grateful Dead",
   "Mentions his wife (Lori)",
+  "Mentions his son (Luke)",
   "Dave is a Coal Burner",
   "\"Throw it down, big man\"",
   "Complains about refs",
