@@ -25,7 +25,7 @@ var waltonThings =
   "Dave is a Coal Burner",
   "\"Throw it down, big man\"",
   "Complains about refs",
-  "\'I love the refs\"",
+  "Compliments the refs",
   "Bill gives a present",
   "Bill receives a present",
   "Creates Player Nickname",
@@ -35,7 +35,7 @@ var waltonThings =
   "Mentions his playing days",
   "Won't answer Dave's question",
   "Yoga/Meditation Reference",
-  "Worst play ever",
+  "(Top 5) Worst play ever",
   "Creationism",
   "\"Fossil fuel\"",
   "Calls player by nickname",
@@ -55,9 +55,10 @@ var waltonThings =
   "\"Great Pass\" (bad shot)",
   "\"Climb the ladder\"",
   "\"Why do you hate my grandchildren?\"",
-  "\"I love my bike\"",
+  "Mentions his bike",
   "Plenty of time for a comeback",
-  "___ is much better than media perception"
+  "___ is much better than media perception",
+  "Says it's someone's birthday"
 ];
 
 var randomSeed;
