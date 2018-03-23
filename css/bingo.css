@@ -73,6 +73,7 @@ h3 {
   background: #333;
   transition: background .35s, color .35s;
   text-transform: capitalize;
+  font-size:0.9rem;
 }
 .bingoHeader {
   display:table-cell;
@@ -92,6 +93,9 @@ h3 {
   border: 1px solid #111;
   font-size: 1.5rem;
   pointer-events: none;
+}
+.bingoBox.smallText {
+  font-size: 0.75rem;
 }
 .bingoBox.free {
   color: #0076c0;
@@ -119,6 +123,15 @@ h3 {
 #websiteLocation
 {
   text-align:center;
+}
+
+@media only screen and (min-width: 600px) {
+  .bingoBox {
+    font-size: 1rem;
+  }
+  .bingoBox.smallText {
+    font-size: 1rem;
+  }
 }
 
 @media print {

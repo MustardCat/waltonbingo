@@ -56,6 +56,7 @@ var initialList =
   "___ is much better than media perception",
   "Says it's someone's birthday"
 ];
+var resizeTextCount = 25;
 
 var middlePos = parseInt(cardDimension/2);
 var bingoCard = document.getElementById("bingoCard");
@@ -130,6 +131,12 @@ function CreateBingoBox(currentRow, x, y)
   {
     var randNum = Math.floor(Math.random(0,bingoOptions.length - 1));
     currentBox.innerHTML = bingoOptions[randNum];
+
+    if (currentBox.innerHTML.length > resizeTextCount)
+    {
+      currentBox.classList.add('smallText');
+    }
+
     bingoOptions.splice(randNum,1);
   }
   currentRow.appendChild(currentBox);
