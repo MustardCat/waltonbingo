@@ -42,6 +42,9 @@ h3 {
 #seedNumberPrint:before {
   content:"Seed: ";
 }
+#cardContainer {
+  overflow-x: auto;
+}
 #bingoCard {
   display:table;
   width:100%;
