@@ -57,7 +57,7 @@ var optionalList =
   "Won't answer Dave's question",
   "Creationism",
   "\"Fossil fuel\"",
-  "\"Why do you hate my grandchildren?\"",
+  "\"Why do you hate my grandchildren?\""
 ];
 
 var resizeTextCount = 25;
