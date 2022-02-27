@@ -1,43 +1,53 @@
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+{
     -webkit-appearance: none;
     margin: 0;
 }
 
-input[type="number"] {
+input[type="number"]
+{
     -moz-appearance: textfield;
 }
 
-html {
+html
+{
   font-family: 'Oswald', sans-serif;
   overflow-x: hidden;
 }
-body{
+body
+{
   margin:8px 0;
 }
-h1, h3 {
+h1, h3
+{
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-h3 {
+h3
+{
   text-align: center;
   text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: normal;
 }
-.printOnly {
+.printOnly
+{
   display:none;
 }
-.webOnly {
+.webOnly
+{
 
 }
-.buttonContainer {
+.buttonContainer
+{
   display:block;
   text-align: center;
   margin:1em auto;
 }
 /* The switch - the box around the slider */
-.switch {
+.switch
+{
   position: relative;
   display: inline-block;
   width: 60px;
@@ -45,14 +55,16 @@ h3 {
 }
 
 /* Hide default HTML checkbox */
-.switch input {
+.switch input
+{
   opacity: 0;
   width: 0;
   height: 0;
 }
 
 /* The slider */
-.slider {
+.slider
+{
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -64,7 +76,8 @@ h3 {
   transition: .4s;
 }
 
-.slider:before {
+.slider:before
+{
   position: absolute;
   content: "";
   height: 26px;
@@ -76,39 +89,48 @@ h3 {
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked + .slider
+{
   background-color: #0076c0;
 }
 
-input:focus + .slider {
+input:focus + .slider
+{
   box-shadow: 0 0 1px #0076c0;
 }
 
-input:checked + .slider:before {
+input:checked + .slider:before
+{
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
-.slider.round {
+.slider.round
+{
   border-radius: 34px;
 }
 
-.slider.round:before {
+.slider.round:before
+{
   border-radius: 50%;
 }
 
-#seedNumber {
+#seedNumber
+{
   word-break: break-all;
 }
-#seedNumberPrint:before {
+#seedNumberPrint:before
+{
   content:"Seed: ";
 }
-#cardContainer {
+#cardContainer
+{
   overflow-x: auto;
 }
-#bingoCard {
+#bingoCard
+{
   display:table;
   width:100%;
   margin:auto;
@@ -123,11 +145,13 @@ input:checked + .slider:before {
   -moz-box-shadow: 0 0 57px rgba(0,0,0,0.25);
   box-shadow: 0 0 57px rgba(0,0,0,0.25);*/
 }
-.bingoRow {
+.bingoRow
+{
   display:table-row;
   width:100%;
 }
-.bingoBox {
+.bingoBox
+{
   position: relative;
   display:table-cell;
   width:20%;
@@ -141,7 +165,8 @@ input:checked + .slider:before {
   text-transform: capitalize;
   font-size:0.9rem;
 }
-.bingoHeader {
+.bingoHeader
+{
   display:table-cell;
   width:20%;
   text-align:center;
@@ -160,10 +185,12 @@ input:checked + .slider:before {
   font-size: 1.5rem;
   pointer-events: none;
 }
-.bingoBox.smallText {
+.bingoBox.smallText
+{
   font-size: 0.75rem;
 }
-.bingoBox.free {
+.bingoBox.free
+{
   color: #0076c0;
   font-size:2rem;
 }
@@ -172,18 +199,28 @@ input:checked + .slider:before {
   color:#fff;
   background: rgba(0,0,0,0.15);
 }
-.bingoBox.selected:after {
+.bingoBox.selected:after
+{
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    content: "X"; /* use the hex value here... */
+    content: "X";
     font-size: 5rem;
     color: rgba(255,255,255,0.5);
     line-height: 100px;
 }
-#seedNumber {
+.bingoBox.selected.highlighted
+{
+	background-color: rgba(0,118,192,0.75);
+}
+.bingoBox.selected.highlighted:after
+{
+}
+
+#seedNumber
+{
   width:100px;
 }
 #websiteLocation
@@ -191,29 +228,38 @@ input:checked + .slider:before {
   text-align:center;
 }
 
-@media only screen and (min-width: 600px) {
-  .bingoBox {
+@media only screen and (min-width: 600px)
+{
+  .bingoBox
+  {
     font-size: 1rem;
   }
-  .bingoBox.smallText {
+  .bingoBox.smallText
+  {
     font-size: 1rem;
   }
 }
 
-@media print {
-  .bingoBox.selected:after {
+@media print
+{
+  .bingoBox.selected:after
+  {
     display:none;
   }
-  .webOnly {
+  .webOnly
+  {
     display:none;
   }
-  .bingoBox.free {
+  .bingoBox.free
+  {
     color: #000;
   }
-  .printOnly {
+  .printOnly
+  {
     display:inherit;
   }
-  #seedNumber {
+  #seedNumber
+  {
     text-align:center;
   }
 }

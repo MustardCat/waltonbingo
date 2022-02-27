@@ -1,5 +1,9 @@
 var pageTitle = "Bill Walton Bingo"
+var enableDebugPrints = false;
 var cardDimension = 5;
+var gameState = new Array(cardDimension * cardDimension);
+var bingoPositions = new Array(cardDimension);
+var numBoxesSelected = 0;
 var bingoLetters =
 [
   "B",
@@ -77,7 +81,22 @@ RandomizeSeed();
 Random.shuffle(randomEngine, bingoOptions);
 CreateBingoCard();
 
+class BoxPosition
+{
+  constructor(row, column)
+  {
+    this.row = row;
+    this.column = column;
+  }
+}
+
 //Helper Scripts
+function DebugLog(data)
+{
+	if (enableDebugPrints)
+		console.log(data);
+}
+
 function RandomizeSeed()
 {
   randomSeed = Math.floor(Math.random() * 1000000);
@@ -86,18 +105,44 @@ function RandomizeSeed()
   randomEngine = Random.engines.mt19937().seed(randomSeed);
 }
 
+function PlaySound(filename)
+{
+	var audioHandle = new Audio(filename);
+	audioHandle.play();
+}
+
+function GetBingoIndex(row, column)
+{
+	return (row * cardDimension) + column;
+}
+
+function ClearBingoState()
+{
+	for (var x = 0; x < cardDimension; x++)
+	{
+		for (var y = 0; y < cardDimension; y++)
+		{
+		  gameState[GetBingoIndex(x, y)] = false;
+		}
+	}
+	
+	bingoPositions.length = 0;
+	numBoxesSelected = 0;
+}
+
 function CreateBingoCard()
 {
   CreateHeader();
-  for (var y = 0; y < cardDimension; y++)
+  for (var x = 0; x < cardDimension; x++)
   {
     var currentRow = CreateBingoRow();
 
-    for (var x = 0;x < cardDimension; x++)
+    for (var y = 0; y < cardDimension; y++)
     {
       CreateBingoBox(currentRow, x, y);
     }
   }
+  ClearBingoState();
 }
 
 function CreateHeader()
@@ -126,6 +171,8 @@ function CreateBingoBox(currentRow, x, y)
 {
   var currentBox = document.createElement("div");
   currentBox.className = "bingoBox";
+  currentBox.setAttribute("data-row", x);
+  currentBox.setAttribute("data-column", y);
   if (y == middlePos && x == middlePos)
   {
     currentBox.innerHTML = "FREE";
@@ -147,17 +194,201 @@ function CreateBingoBox(currentRow, x, y)
   currentBox.onclick = ToggleBingo(currentBox);
 }
 
+function RemoveAllBingos()
+{
+	var boxes = document.getElementsByClassName("bingoBox");
+	for (var i = 0; i < boxes.length; i++)
+	{
+		boxes[i].classList.remove("highlighted");
+	}
+}
+
+function RemovePreviousBingo(positionsArray)
+{
+	for (var i = 0; i < positionsArray.length; i++)
+	{
+		var pos = positionsArray[i];
+		DebugLog(pos.row.toString() + " " + pos.column.toString());
+		var box = document.querySelector('.bingoBox[data-row="' + pos.row.toString() + '"]' + '[data-column="' + pos.column.toString() + '"]')
+		if (!box)
+		{
+			RemoveAllBingos();
+			PlaySound("audio/you-broke-it.mp3");
+			return;
+		}
+		box.classList.remove("highlighted");
+	}
+}
+
+function HighlightBingo(positionsArray)
+{
+	DebugLog("Bingo Positions [" + positionsArray.length.toString()+ "]");
+	for (var i = 0; i < positionsArray.length; i++)
+	{
+		var pos = positionsArray[i];
+		DebugLog(pos.row.toString() + " " + pos.column.toString());
+		var box = document.querySelector('.bingoBox[data-row="' + pos.row.toString() + '"]' + '[data-column="' + pos.column.toString() + '"]')
+		if (!box)
+		{
+			RemoveAllBingos();
+			PlaySound("audio/you-broke-it.mp3");
+			return;
+		}
+		box.classList.add("highlighted");
+	}
+}
+
+function CheckForPossibleBingo()
+{
+	if (numBoxesSelected < cardDimension)
+		return false;
+
+	// row checks
+	for (var x = 0; x < cardDimension; x++)
+	{
+		if (gameState[GetBingoIndex(x, 0)] && gameState[GetBingoIndex(x, cardDimension-1)])
+		{
+			return true;
+		}
+	}
+	
+	// column checks
+	for (var y = 0; y < cardDimension; y++)
+	{
+		if (gameState[GetBingoIndex(0, y)] && gameState[GetBingoIndex(cardDimension - 1, y)])
+		{
+			return true;
+		}
+	}
+	
+	// diagonal checks
+	if (gameState[GetBingoIndex(0, 0)] && gameState[GetBingoIndex(cardDimension - 1, cardDimension - 1)])
+	{
+		return true;
+	}
+	if (gameState[GetBingoIndex(cardDimension - 1, 0)] && gameState[GetBingoIndex(0, cardDimension - 1)])
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+function CheckForBingo(positions)
+{
+	positions.length = 0;
+	
+	var bingoPossible = CheckForPossibleBingo();
+	if (!bingoPossible)
+		return false;
+	
+	DebugLog("Bingo Possible");
+	
+	// row bingo checks
+	for (var x = 0; x < cardDimension; x++)
+	{
+		if (!gameState[GetBingoIndex(x, 0)])
+			continue;
+		
+		for (var y = 0; y < cardDimension; y++)
+		{
+			if (!gameState[GetBingoIndex(x, y)])
+			{
+				positions.length = 0;
+				break;
+			}
+			
+			positions.push(new BoxPosition(x, y));
+			if (positions.length == cardDimension)
+			{
+				return true;
+			}
+			
+		}
+	}
+	
+	// column bingo checks
+	for (var y = 0; y < cardDimension; y++)
+	{
+		if (!gameState[GetBingoIndex(0, y)])
+			continue;
+		
+		for (var x = 0; x < cardDimension; x++)
+		{
+			if (!gameState[GetBingoIndex(x, y)])
+			{
+				positions.length = 0;
+				break;
+			}
+			
+			positions.push(new BoxPosition(x, y));
+			if (positions.length == cardDimension)
+			{
+				return true;
+			}
+		}
+	}
+	
+	// diagonal bingo checks
+	for (var pos = 0; pos < cardDimension; pos++)
+	{
+		if (!gameState[GetBingoIndex(pos, pos)])
+		{
+			positions.length = 0;
+			break;
+		}
+		
+		positions.push(new BoxPosition(pos, pos));
+	}
+	
+	if (positions.length == cardDimension)
+	{
+		return true;
+	}
+	
+	for (var pos = 0; pos < cardDimension; pos++)
+	{
+		var x = cardDimension - pos;
+		if (!gameState[GetBingoIndex(x, pos)])
+		{
+			positions.length = 0;
+			break;
+		}
+		
+		positions.push(new BoxPosition(x, pos));
+	}
+	
+	return positions.length == cardDimension;
+}
+
 function ToggleBingo(e)
 {
   return function()
   {
+	var enabled = false;
     if (e.classList.contains("selected"))
     {
       e.classList.remove("selected");
+	  numBoxesSelected--;
     }
     else {
       e.classList.add("selected");
+	  numBoxesSelected++;
+	  enabled = true;
     }
+	
+	RemovePreviousBingo(bingoPositions);
+	
+	var pos = new BoxPosition(parseInt(e.getAttribute("data-row")), parseInt(e.getAttribute("data-column")));
+	DebugLog(pos.row + " " + pos.column);
+	
+	gameState[GetBingoIndex(pos.row, pos.column)] = enabled;
+	
+	if (CheckForBingo(bingoPositions))
+	{
+		DebugLog("Bingo!")
+		HighlightBingo(bingoPositions);
+	}
   }
 }
 
