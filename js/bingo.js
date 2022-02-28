@@ -4,6 +4,7 @@ var cardDimension = 5;
 var gameState = new Array(cardDimension * cardDimension);
 var bingoPositions = new Array(cardDimension);
 var numBoxesSelected = 0;
+var lastSoundHandle = null;
 var bingoLetters =
 [
   "B",
@@ -90,6 +91,33 @@ class BoxPosition
   }
 }
 
+class SoundHandle
+{
+  constructor(filename)
+  {
+    this.fileName = filename;
+    this.soundHandle = new Audio(this.fileName);
+  }
+  
+  Play()
+  {
+	  if (this.soundHandle)
+	  {
+		  this.soundHandle.play();
+	  }
+  }
+  
+  HasFinished()
+  {
+	  if (!this.soundHandle || this.soundHandle.ended)
+	  {
+		  return true;
+	  }
+	  
+	  return false;
+  }
+}
+
 //Helper Scripts
 function DebugLog(data)
 {
@@ -107,8 +135,11 @@ function RandomizeSeed()
 
 function PlaySound(filename)
 {
-	var audioHandle = new Audio(filename);
-	audioHandle.play();
+	if (!lastSoundHandle || lastSoundHandle.HasFinished() || lastSoundHandle.fileName != filename)
+	{
+		lastSoundHandle = new SoundHandle(filename);
+		lastSoundHandle.Play();
+	}
 }
 
 function GetBingoIndex(row, column)
@@ -201,6 +232,8 @@ function RemoveAllBingos()
 	{
 		boxes[i].classList.remove("highlighted");
 	}
+	
+	bingoPositions.length = 0;
 }
 
 function RemovePreviousBingo(positionsArray)
@@ -218,11 +251,14 @@ function RemovePreviousBingo(positionsArray)
 		}
 		box.classList.remove("highlighted");
 	}
+	
+	bingoPositions.length = 0;
 }
 
 function HighlightBingo(positionsArray)
 {
 	DebugLog("Bingo Positions [" + positionsArray.length.toString()+ "]");
+	
 	for (var i = 0; i < positionsArray.length; i++)
 	{
 		var pos = positionsArray[i];
