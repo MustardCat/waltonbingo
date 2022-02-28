@@ -1,10 +1,7 @@
 var pageTitle = "Bill Walton Bingo"
 var enableDebugPrints = false;
 var cardDimension = 5;
-var gameState = new Array(cardDimension * cardDimension);
-var bingoPositions = new Array(cardDimension);
-var numBoxesSelected = 0;
-var lastSoundHandle = null;
+var brokenAudioFilePath = "audio/you-broke-it.mp3";
 var bingoLetters =
 [
   "B",
@@ -64,6 +61,13 @@ var optionalList =
   "\"Fossil fuel\"",
   "\"Why do you hate my grandchildren?\""
 ];
+
+// ---- Everything above this line is for you to customize your card generator ---- //
+
+var gameState = new Array(cardDimension * cardDimension);
+var bingoPositions = new Array(cardDimension);
+var numBoxesSelected = 0;
+var lastSoundHandle = null;
 
 var resizeTextCount = 25;
 
@@ -246,7 +250,7 @@ function RemovePreviousBingo(positionsArray)
 		if (!box)
 		{
 			RemoveAllBingos();
-			PlaySound("audio/you-broke-it.mp3");
+			PlaySound(brokenAudioFilePath);
 			return;
 		}
 		box.classList.remove("highlighted");
@@ -267,7 +271,7 @@ function HighlightBingo(positionsArray)
 		if (!box)
 		{
 			RemoveAllBingos();
-			PlaySound("audio/you-broke-it.mp3");
+			PlaySound(brokenAudioFilePath);
 			return;
 		}
 		box.classList.add("highlighted");
