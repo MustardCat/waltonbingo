@@ -16,9 +16,9 @@
     </div>
 
     <div class="buttonContainer webOnly">
-      <p>Is Dave Co-Commentating?</p>
-      <label class="switch">
-        <input id="chkBxDave" type="checkbox" onchange="RandomizeCard()">
+      <p id="optionalListToggleText"></p>
+      <label id="optionalListToggle" class="switch">
+        <input id="chkBxOptional" type="checkbox" onchange="RandomizeCard()">
         <span class="slider round"></span>
       </label>
     </div>
@@ -33,7 +33,7 @@
       <div id="bingoCard"></div>
     </div>
 
-    <p id ="websiteLocation" class="printOnly">Play on a device at </p>
+    <p id="websiteLocation" class="printOnly">Play on a device at </p>
 
     <script src="js/random.min.js"></script>
     <script src="js/bingo.js"></script>

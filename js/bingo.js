@@ -2,6 +2,7 @@ var pageTitle = "Bill Walton Bingo"
 var enableDebugPrints = false;
 var cardDimension = 5;
 var brokenAudioFilePath = "audio/you-broke-it.mp3";
+var includeOptionalList = true;
 var bingoLetters =
 [
   "B",
@@ -51,16 +52,19 @@ var initialList =
   "___ is much better than media perception",
   "Says it's someone's birthday"
 ];
-var optionalList =
-[
-  "\"It's Dave, Right?\"",
-  "Dave is a Coal Burner",
-  "Dave corrects Bill",
-  "Won't answer Dave's question",
-  "Creationism",
-  "\"Fossil fuel\"",
-  "\"Why do you hate my grandchildren?\""
-];
+
+if (includeOptionalList)
+	var optionalListToggleText = "Is Dave Co-Commentating?";
+	var optionalList =
+	[
+	  "\"It's Dave, Right?\"",
+	  "Dave is a Coal Burner",
+	  "Dave corrects Bill",
+	  "Won't answer Dave's question",
+	  "Creationism",
+	  "\"Fossil fuel\"",
+	  "\"Why do you hate my grandchildren?\""
+	];
 
 // ---- Everything above this line is for you to customize your card generator ---- //
 
@@ -77,6 +81,12 @@ var bingoCard = document.getElementById("bingoCard");
 document.getElementById("websiteLocation").innerHTML += window.location.href;
 document.getElementsByTagName("h1")[0].innerHTML = pageTitle;
 document.getElementsByTagName("title")[0].innerHTML = pageTitle;
+
+if (optionalListToggleText)
+	document.getElementById("optionalListToggleText").innerHTML = optionalListToggleText;
+
+if (!includeOptionalList || optionalList.length == 0)
+	document.getElementById("optionalListToggle").style.display = "none";
 
 var randomSeed;
 var randomEngine;
@@ -442,7 +452,7 @@ function RandomizeCard()
   bingoOptions = initialList.slice(0);
 
   //Add Optional List to Bingo Options if checked
-  if (document.getElementById("chkBxDave").checked)
+  if (includeOptionalList && document.getElementById("chkBxOptional").checked)
   {
     for (i = 0; i < optionalList.length; i++)
     {
@@ -469,7 +479,7 @@ function LoadSeed()
     bingoOptions = initialList.slice(0);
 
     //Add Optional List to Bingo Options if checked
-    if (document.getElementById("chkBxDave").checked)
+    if (includeOptionalList && document.getElementById("chkBxOptional").checked)
     {
       for (i = 0; i < optionalList.length; i++)
       {
