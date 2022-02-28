@@ -384,7 +384,7 @@ function CheckForBingo(positions)
 	
 	for (var pos = 0; pos < cardDimension; pos++)
 	{
-		var x = cardDimension - pos;
+		var x = cardDimension - 1 - pos;
 		if (!gameState[GetBingoIndex(x, pos)])
 		{
 			positions.length = 0;
