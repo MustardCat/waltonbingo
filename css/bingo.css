@@ -13,6 +13,42 @@ html
 {
   font-family: 'Oswald', sans-serif;
   overflow-x: hidden;
+  min-height:100%;
+}
+h2
+{
+	display:none;
+	font-size:1.25rem;
+	text-align:center;
+}
+#goneButNotForgotten
+{
+	filter: grayscale(100%);
+	background-color: #111;
+}
+#goneButNotForgotten h2
+{
+	display:inherit;
+	font-style: italic;
+}
+#goneButNotForgotten .bingoBox.selected
+{
+	background-color: rgba(40,40,40,0.75);
+}
+#goneButNotForgotten .bingoBox.selected.highlighted
+{
+	background-color: rgba(120,120,120,0.33);
+}
+@media only screen and (min-width: 600px)
+{
+	#goneButNotForgotten
+	{
+		background:url(../images/the-legend-himself.jpg);
+		background-repeat: no-repeat;
+		background-position: 40%;
+		background-size: cover;
+		background-position: fixed;
+	}
 }
 body
 {
@@ -30,6 +66,10 @@ h3
   text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: normal;
+}
+#goneButNotForgotten h1, h2, #optionalListToggleText
+{
+	text-shadow: -1px -1px 0 #DDD, 1px -1px 0 #DDD, -1px 1px 0 #DDD, 1px 1px 0 #DDD;
 }
 .printOnly
 {
