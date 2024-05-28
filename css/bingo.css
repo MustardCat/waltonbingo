@@ -26,7 +26,7 @@ h2
 	filter: grayscale(100%);
 	background-color: #111;
 }
-#goneButNotForgotten h1, #optionalListToggleText
+#goneButNotForgotten h1, #goneButNotForgotten #optionalListToggleText
 {
 	color: #FFF;
 }
