@@ -26,10 +26,15 @@ h2
 	filter: grayscale(100%);
 	background-color: #111;
 }
+#goneButNotForgotten h1, #optionalListToggleText
+{
+	color: #FFF;
+}
 #goneButNotForgotten h2
 {
 	display:inherit;
 	font-style: italic;
+	text-shadow: -1px -1px 0 #DDD, 1px -1px 0 #DDD, -1px 1px 0 #DDD, 1px 1px 0 #DDD;
 }
 #goneButNotForgotten .bingoBox.selected
 {
@@ -66,10 +71,6 @@ h3
   text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: normal;
-}
-#goneButNotForgotten h1, h2, #optionalListToggleText
-{
-	text-shadow: -1px -1px 0 #DDD, 1px -1px 0 #DDD, -1px 1px 0 #DDD, 1px 1px 0 #DDD;
 }
 .printOnly
 {
